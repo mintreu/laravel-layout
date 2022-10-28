@@ -4,7 +4,7 @@
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/mintreu/laravel-layout/run-tests?label=tests)](https://github.com/mintreu/laravel-layout/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/mintreu/laravel-layout/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/mintreu/laravel-layout/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/mintreu/laravel-layout.svg?style=flat-square)](https://packagist.org/packages/mintreu/laravel-layout)
-[![Size](https://img.shields.io/github/repo-size/mintreu/laravel-layout)  
+![Size](https://img.shields.io/github/repo-size/mintreu/laravel-layout)  
 
 
 This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
