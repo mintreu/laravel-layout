@@ -1,0 +1,59 @@
+<?php
+namespace App\View\Components;
+
+use Mintreu\LaravelLayout\LaravelLayout;
+
+class {{ theme_name }} extends LaravelLayout
+{
+    protected string $view = '{{ theme_name }}';
+
+    /**
+         * @param string $title
+         * @param string $favicon
+         * @param array $keyword
+         * @param string $description
+         * @param array $config
+         * @param bool $preloader
+         * @param array $preloaderConfig
+         * @param bool $manifest
+         */
+        public function __construct(string $title='',string $favicon='',array $keyword=[],string $description='',array $config=[],bool $preloader=true,array $preloaderConfig=[],bool $manifest=true)
+        {
+            $this->title = $title;
+            $this->description = $description;
+            $this->favicon = $favicon;
+            $this->keyword = $keyword;
+            $this->manifest = $manifest;
+            $this->preloader = $preloader;
+            $this->layoutConfig = $config;
+            $this->preloaderConfig = [
+                'gif' => (file_exists(public_path('preloader.gif')) ? asset('preloader.fig') : isset($preloaderConfig['gif'])) ? $preloaderConfig['gif'] : '',
+                'bg' => $preloaderConfig['bg'] ?? '',
+                'primary' => $preloaderConfig['primary'] ?? '',
+                'secondary' => $preloaderConfig['secondary'] ?? '',
+            ];
+
+            parent::__construct();
+        }
+
+    /**
+     * CSS Files (Full Path)
+     * @return array
+     */
+    public function stylesheet(): array
+    {
+        return [
+                // TODO: Implement stylesheet() method.
+        ];
+    }
+
+    /**
+     * Javascript Files (Full Path)
+     * @return array
+     */
+    public function javascript(): array
+    {
+        return [
+                // TODO: Implement javascript() method.
+        ];
+    }
