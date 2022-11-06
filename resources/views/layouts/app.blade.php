@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $title }}</title>
     @if(!empty($favicon))<link rel="icon" type="image/{{ $config['favicon']['ext']}}" href="@img({{ $favicon}})"/> @endif
+    <meta name="Keywords" content="{{ implode(',',$keyword ) }}" />
+    <meta name="Description" content="{{ $description }}" />
 
     <meta property="og:url" content="{{ request()->url() }}"/>
     <meta property="og:site_name" content="{{ config('app.name') }}"/>

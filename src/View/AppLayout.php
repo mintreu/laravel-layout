@@ -16,6 +16,7 @@ class AppLayout extends Component
     public array $keyword;
     public string $description;
     public bool $manifest;
+    public array $config=[];
     protected array $faviconConfig;
 
 
@@ -24,11 +25,14 @@ class AppLayout extends Component
         $this->title = empty($title) ? config('app.name') : $title;
         $this->loadFavicon($favicon);
         $this->keyword = $keyword;
-        $this->description = $description;
+        $this->description = !empty($description) ? $description : 'welcome '.Str::lower($this->title);
         $this->layoutConfig = $this->loadLayoutConfig($config);
         $this->manifest = file_exists(public_path('/manifest.json'));
 
-
+        $this->config = [
+            'layout' => $this->layoutConfig,
+            'favicon' => $this->faviconConfig
+        ];
 
 
     }
@@ -69,14 +73,9 @@ class AppLayout extends Component
      *
      * @return View
      */
-    public function render()
+    public function render():View
     {
-        return view('layout::layouts.app',[
-            'config' => [
-                'layout' => $this->layoutConfig,
-                'favicon' => $this->faviconConfig
-            ],
-        ]);
+        return view('layout::layouts.app',$this->config);
     }
 
 
