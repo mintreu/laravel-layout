@@ -17,12 +17,12 @@ trait hasFilesManipulator
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    protected function copyStubToApp(string $stub, string $targetPath, array $replacements = []): void
+    protected function copyStubToApp(string $stub, string $targetPath, array $replacements = [],string $ext='stub'): void
     {
 
         $filesystem = app(Filesystem::class);
 //        $location = dirname(dirname(dirname(__DIR__))). "/stubs/{$stub}.stub";
-        $stubPath = $filesystem->exists(dirname(dirname(dirname(__DIR__))). "/stubs/{$stub}.stub") ? dirname(dirname(dirname(__DIR__))). "/stubs/{$stub}.stub" : null;
+        $stubPath = $filesystem->exists(dirname(dirname(dirname(__DIR__))). "/stubs/{$stub}.".$ext) ? dirname(dirname(dirname(__DIR__))). "/stubs/{$stub}.".$ext : null;
 
         if($stubPath != null)
         {

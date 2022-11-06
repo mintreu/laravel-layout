@@ -2,6 +2,7 @@
 
 namespace Mintreu\LaravelLayout\View;
 
+use Illuminate\Support\Str;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
@@ -11,29 +12,56 @@ class AppLayout extends Component
     protected array $layoutConfig=[];
     public string $title;
     public string $favicon;
+
     public array $keyword;
     public string $description;
-    protected bool $preloader;
     public bool $manifest;
-    protected array $preloaderConfig;
+    protected array $faviconConfig;
 
 
-    public function __construct(string $title='',string $favicon='',array $keyword=[],string $description='',array $config=[],bool $preloader=true,array $preloaderConfig=[],bool $manifest=true)
+    public function __construct(string $title='',string $favicon='',array $keyword=[],string $description='',array $config=[])
     {
-        $this->title = $title;
-        $this->favicon = $favicon;
+        $this->title = empty($title) ? config('app.name') : $title;
+        $this->loadFavicon($favicon);
         $this->keyword = $keyword;
         $this->description = $description;
-        $this->layoutConfig = $config;
-        $this->preloader = $preloader;
-        $this->preloaderConfig = [
-          'gif' => (file_exists(public_path('preloader.gif')) ? asset('preloader.fig') : isset($preloaderConfig['gif'])) ? $preloaderConfig['gif'] : '',
-          'bg' => $preloaderConfig['bg'] ?? "#f3f3f3",
-          'primary' => $preloaderConfig['primary'] ?? "#f3f3f3",
-          'secondary' => $preloaderConfig['secondary'] ?? "#444444",
-        ];
-        $this->manifest = $manifest;
+        $this->layoutConfig = $this->loadLayoutConfig($config);
+        $this->manifest = file_exists(public_path('/manifest.json'));
+
+
+
+
     }
+
+
+
+    protected function loadFavicon(string $favicon='')
+    {
+
+        if(!empty($favicon))
+        {
+            $this->favicon = file_exists(public_path($favicon)) ? $favicon : 'favicon.ico';
+        }else{
+            $this->favicon = file_exists(public_path('favicon.ico')) ? 'favicon.ico' : 'error.gif';
+        }
+        $faviconExt = match (Str::lower(Str::afterLast($this->favicon, '.'))) {
+            "ico" => 'x-icon',
+            "gif" => 'gif',
+            default => 'png',
+        };
+
+        $this->faviconConfig = [
+            'name' => $this->favicon,
+            'ext' => $faviconExt,
+        ];
+    }
+
+
+    protected function loadLayoutConfig(array $config=[])
+    {
+        return $config;
+    }
+
 
 
     /**
@@ -44,11 +72,10 @@ class AppLayout extends Component
     public function render()
     {
         return view('layout::layouts.app',[
-            'layout' => $this->layoutConfig,
-            'preloader' => [
-                'status' => $this->preloader,
-                'config' => $this->preloaderConfig,
-            ]
+            'config' => [
+                'layout' => $this->layoutConfig,
+                'favicon' => $this->faviconConfig
+            ],
         ]);
     }
 
