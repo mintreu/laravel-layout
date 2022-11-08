@@ -5,9 +5,12 @@ namespace Mintreu\LaravelLayout\View;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 use Illuminate\View\View;
+use Mintreu\LaravelLayout\Traits\hasLayoutConfiguration;
 
 class AppLayout extends Component
 {
+
+    use hasLayoutConfiguration;
 
     protected array $layoutConfig=[];
     public string $title;
@@ -18,10 +21,11 @@ class AppLayout extends Component
     public bool $manifest;
     public array $config=[];
     protected array $faviconConfig;
-
+    protected array $viteAssets;
 
     public function __construct(string $title='',string $favicon='',array $keyword=[],string $description='',array $config=[])
     {
+
         $this->title = empty($title) ? config('app.name') : $title;
         $this->loadFavicon($favicon);
         $this->keyword = $keyword;
@@ -29,9 +33,16 @@ class AppLayout extends Component
         $this->layoutConfig = $this->loadLayoutConfig($config);
         $this->manifest = file_exists(public_path('/manifest.json'));
 
+        // override vite asset list
+        // Read more at: https://laravel.com/docs/9.x/vite#loading-your-scripts-and-styles
+        $this->viteAssets = ['resources/js/app.js'];
+        // override vite asset list
+
+
         $this->config = [
             'layout' => $this->layoutConfig,
-            'favicon' => $this->faviconConfig
+            'favicon' => $this->faviconConfig,
+            'vite' => $this->viteAssets,
         ];
 
 
@@ -63,6 +74,10 @@ class AppLayout extends Component
 
     protected function loadLayoutConfig(array $config=[])
     {
+        $this->analyzeGivenConfig($config);
+
+
+
         return $config;
     }
 

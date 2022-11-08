@@ -30,8 +30,14 @@
             display: none !important;
         }
     </style>
-    @vite('resources/js/app.js')
-    {{ $stylesheet ?? '' }}
+{{--    @if(isset($hasVite) && $hasVite)--}}
+{{--        @if($viteStyleFromJs)--}}
+{{--    --}}
+{{--        @else--}}
+{{--    @vite(['resources/css/app.css', 'resources/js/app.js'])--}}
+{{--        @endif--}}
+{{--    @endif--}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     {{ $style ?? '' }}
     {{ $layout_header ?? '' }}
     <livewire:styles />
@@ -40,7 +46,6 @@
 {{--Main Content Area--}}
 {{ $slot }}
 {{--Script Area--}}
-{{ $javascript ?? '' }}
 
 {{--Stackable Script Area--}}
 @stack('$script')
