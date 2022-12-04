@@ -1,18 +1,15 @@
 <?php
 
-namespace Mintreu\LaravelLayout\View;
+namespace Mintreu\LaravelLayout\View\Themes;
 
-use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
-use Mintreu\LaravelLayout\LaravelLayout;
+use Illuminate\View\View;
 use Mintreu\LaravelLayout\Traits\layoutResolver;
 
-class Theme extends Component
+class TallTheme extends Component
 {
-
     use layoutResolver;
-
 
     public $title;
     public $keyword;
@@ -52,17 +49,15 @@ class Theme extends Component
 
 
 
-
-
-
-
-
-
     /**
-     * @return Closure|Htmlable|ViewContract|string
+     * Get the view / contents that represents the component.
+     *
+     * @return View
      */
-    public function render()
+    public function render():View
     {
-        return view('layout::layouts.theme');
+        return view('layout::layouts.themes.tall');
     }
+
+
 }

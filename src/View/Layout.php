@@ -2,17 +2,15 @@
 
 namespace Mintreu\LaravelLayout\View;
 
-use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
-use Mintreu\LaravelLayout\LaravelLayout;
+use Illuminate\View\View;
+use Mintreu\LaravelLayout\Traits\hasLayoutConfiguration;
 use Mintreu\LaravelLayout\Traits\layoutResolver;
 
-class Theme extends Component
+class Layout extends Component
 {
-
     use layoutResolver;
-
 
     public $title;
     public $keyword;
@@ -39,17 +37,14 @@ class Theme extends Component
         $hasFavicon = !is_null($favicon) ? $favicon : $logo ?? null;
 
         $this->analyzeLayoutConfig($hasTitle,$hasKeyword,$hasDesc,$hasFavicon);
-        $this->support['vite'] = true;
-        $this->support['wire'] = true;
-        $this->support['spa'] = true;
-        $this->support = array_merge($this->support,$support);
+       $this->support['vite'] = true;
+       $this->support['wire'] = true;
+       $this->support['spa'] = true;
+       $this->support = array_merge($this->support,$support);
 
 
 
     }
-
-
-
 
 
 
@@ -59,10 +54,14 @@ class Theme extends Component
 
 
     /**
-     * @return Closure|Htmlable|ViewContract|string
+     * Get the view / contents that represents the component.
+     *
+     * @return View
      */
-    public function render()
+    public function render():View
     {
-        return view('layout::layouts.theme');
+        return view('layout::layouts.app');
     }
+
+
 }
