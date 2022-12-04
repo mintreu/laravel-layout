@@ -2,67 +2,12 @@
 
 namespace Mintreu\LaravelLayout\View;
 
-use Illuminate\Contracts\Support\Htmlable;
-use Illuminate\Support\Str;
-use Illuminate\View\Component;
 use Mintreu\LaravelLayout\LaravelLayout;
-use Mintreu\LaravelLayout\Traits\layoutResolver;
 
-class Theme extends Component
+class Theme extends LaravelLayout
 {
 
-    use layoutResolver;
+    protected ?string $view = 'layout::layouts.theme';
 
 
-    public $title;
-    public $keyword;
-    public $description;
-    public $favicon;
-    public $favicon_type;
-    public $support;
-
-    public function __construct(
-        ?string $title=null,
-        ?string $label=null,
-        ?array $keyword=null,
-        ?array $keywords=null,
-        ?string $description=null,
-        ?string $desc=null,
-        ?string $favicon=null,
-        ?string $logo=null,
-        ?array $support=[],
-    )
-    {
-        $hasTitle = !is_null($title) ? $title : $label ?? null;
-        $hasKeyword = !is_null($keyword) ? $keyword : $keywords ?? null;
-        $hasDesc = !is_null($description) ? $description : $desc ?? null;
-        $hasFavicon = !is_null($favicon) ? $favicon : $logo ?? null;
-
-        $this->analyzeLayoutConfig($hasTitle,$hasKeyword,$hasDesc,$hasFavicon);
-        $this->support['vite'] = true;
-        $this->support['wire'] = true;
-        $this->support['spa'] = true;
-        $this->support = array_merge($this->support,$support);
-
-
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * @return Closure|Htmlable|ViewContract|string
-     */
-    public function render()
-    {
-        return view('layout::layouts.theme');
-    }
 }
