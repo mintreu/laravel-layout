@@ -22,10 +22,24 @@ trait layoutResolver
         string $favicon=null
     )
     {
+
+
         if(!is_null($title))
         {
             $this->title = $title;
         }
+
+        if(is_null($this->title) && isset($this->label))
+        {
+            $this->title = $this->label;
+        }
+
+        if(is_null($this->title) && isset($this->name))
+        {
+            $this->title = $this->name;
+        }
+
+
 
         if(!is_null($keyword))
         {

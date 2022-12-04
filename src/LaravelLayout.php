@@ -23,6 +23,7 @@ abstract class LaravelLayout extends Component
 
     public function __construct(
         ?string $title=null,
+        ?string $name=null,
         ?string $label=null,
         ?array $keyword=null,
         ?array $keywords=null,
@@ -39,6 +40,7 @@ abstract class LaravelLayout extends Component
         $this->resolveSupport($hasSupport);
 
         $hasTitle = !is_null($title) ? $title : $label ?? null;
+        $hasTitle = !is_null($name) ? $name : $hasTitle;
         $hasTitle = $hasTitle ?? $this->title;
 
         $hasKeyword = !is_null($keyword) ? $keyword : $keywords ?? null;
