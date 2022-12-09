@@ -11,17 +11,38 @@ trait hasLayoutSupport
 
         foreach ($support as $key => $value)
         {
-            $this->{$key} = $value;
+            if(in_array($key,$this->getAvailableSupportKeys()))
+            {
+                $this->{$key} = $value;
+            }
         }
 
 
-        $this->support['vite'] = true;
+        $this->support['vite']= [
+            'status' => true,
+            'hasCss' => false,
+            'hasBuild' => false,
+            'buildPath' => null
+        ];
         $this->support['wire'] = true;
         $this->support['spa'] = true;
+        $this->support['direction'] ='ltr';
         $this->support = array_merge($this->support,$support);
 
     }
 
+
+
+    protected function getAvailableSupportKeys()
+    {
+        return [
+            'title','name','label',
+            'keywords','keyword',
+            'description','desc',
+            'favicon','logo',
+
+        ];
+    }
 
 
 }
