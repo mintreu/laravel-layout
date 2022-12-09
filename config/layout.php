@@ -14,8 +14,20 @@ return [
         |
         */
 
-    'asset' => [
-        'path' => env('ASSET_PATH', 'public'),
-    ],
+   'support' => [
+       'vite' => [
+           'status' => true,       // enable or disable vite directive
+           'hasCss' => false,       // if true load app.css separately or false load via app.js
+           'vendorBuild' => null   // set custom build path 'vendor/package/build'
+       ],
+
+       'wire' => true,         // livewire status
+       'spa'   => true,        // load turbolinks
+       'direction' => 'ltr'    // 'ltr'/'rtr'
+   ],
+
+
+
+
 
 ];
