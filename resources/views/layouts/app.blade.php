@@ -14,8 +14,8 @@
 @if($support['vite']['status'])
     @if($support['vite']['hasCss'])
             @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @elseif( $support['vite']['hasBuild'])
-            @vite('resources/js/app.js', {{!is_null($support['vite']['buildPath']) ? $support['vite']['buildPath'] : '' }})
+    @elseif(!is_null($support['vite']['vendorBuild']))
+            @vite(implode(' ,',$support['vite_hasVendorBuild']))
     @else
             @vite('resources/js/app.js')
     @endif

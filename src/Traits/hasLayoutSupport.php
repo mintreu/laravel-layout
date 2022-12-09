@@ -21,9 +21,15 @@ trait hasLayoutSupport
         $this->support['vite']= [
             'status' => true,
             'hasCss' => false,
-            'hasBuild' => false,
-            'buildPath' => null
+            'vendorBuild' => null
         ];
+
+        if(!is_null($this->support['vite']['vendorBuild']))
+        {
+            $this->support['vite_hasVendorBuild'] = ['resources/js/app.js',$this->support['vite']['vendorBuild']];
+        }
+
+
         $this->support['wire'] = true;
         $this->support['spa'] = true;
         $this->support['direction'] ='ltr';
