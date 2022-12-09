@@ -9,7 +9,7 @@
     <meta name="Description" content="{{ $description }}" />
     @if(!is_null($favicon))<link rel="icon" type="image/{{ $favicon_type }}" href="{{ asset($favicon) }}"/> @endif
     @if(isset($meta)) {{ $meta ?? '' }} @endif
-    <title> @if($title) config('app.name').'|'.{{$title}} @else 'Mintreu|Demo'@endif</title>
+    <title> @if($title) {{config('app.name')}}.'|'.{{$title}} @else {{config('app.name')}}@endif</title>
 <!-- Style & Scripts -->
 @if($support['vite']['status'])
     @if($support['vite']['hasCss'])
