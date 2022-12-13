@@ -2,7 +2,6 @@
     <x-slot name="htmlClass"> class="antialiased"</x-slot>
     <x-slot name="meta">{{ $meta ?? '' }}</x-slot>
     <x-slot name="style">
-        <style>[x-cloak] { display: none !important;} </style>
         {{ $style ?? '' }}
     </x-slot>
     <x-slot name="header">{{ $header ?? '' }}</x-slot>

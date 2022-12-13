@@ -23,7 +23,8 @@ return [
 
        'wire' => true,         // livewire status
        'spa'   => true,        // load turbolinks
-       'direction' => 'ltr'    // 'ltr'/'rtr'
+       'direction' => 'ltr',    // 'ltr'/'rtr',
+       'alpine' => false,
    ],
 
 

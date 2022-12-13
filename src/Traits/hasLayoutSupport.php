@@ -32,7 +32,8 @@ trait hasLayoutSupport
 
         $this->support['wire'] = config('layout.support.wire',true);
         $this->support['spa'] = config('layout.support.spa',true);
-        $this->support['direction'] =config('layout.support.direction','ltr');
+        $this->support['direction'] = config('layout.support.direction','ltr');
+        $this->support['alpine'] = config('layout.support.alpine',false);
         $this->support = array_merge($this->support,$support);
 
     }

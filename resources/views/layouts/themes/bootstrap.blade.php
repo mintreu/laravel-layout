@@ -11,7 +11,7 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
         @endif
-        @if($support['alpine']) <style>[x-cloak] { display: none !important;} </style> @endif
+
         {{ $style ?? '' }}
     </x-slot>
     <x-slot name="header">{{ $header ?? '' }}</x-slot>

@@ -4,8 +4,7 @@
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/mintreu/laravel-layout/run-tests?label=tests)](https://github.com/mintreu/laravel-layout/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/mintreu/laravel-layout/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/mintreu/laravel-layout/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/mintreu/laravel-layout.svg?style=flat-square)](https://packagist.org/packages/mintreu/laravel-layout)
-![Size](https://img.shields.io/github/repo-size/mintreu/laravel-layout)  
-
+![Size](https://img.shields.io/github/repo-size/mintreu/laravel-layout)
 
 This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
 
@@ -25,45 +24,63 @@ You can install the package via composer:
 composer require mintreu/laravel-layout
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="laravel-layout-migrations"
-php artisan migrate
-```
 
 You can publish the config file with:
 
 ```bash
 php artisan vendor:publish --tag="laravel-layout-config"
 ```
-
 This is the contents of the published config file:
 
 ```php
 return [
+ 'support' => [
+       'vite' => [
+           'status' => true,       // enable or disable vite directive
+           'hasCss' => false,       // if true load app.css separately or false load via app.js
+           'vendorBuild' => null   // set custom build path 'vendor/package/build'
+       ],
+
+       'wire' => true,         // livewire status
+       'spa'   => true,        // load turbolinks
+       'direction' => 'ltr',    // 'ltr'/'rtr',
+       'alpine' => false,
+   ],
 ];
 ```
-
 Optionally, you can publish the views using
 
 ```bash
 php artisan vendor:publish --tag="laravel-layout-views"
 ```
-
 ## Usage
 
-```php
-$laravelLayout = new Mintreu\LaravelLayout();
-echo $laravelLayout->echoPhrase('Hello, Mintreu!');
-```
+**Create Own Theme**
 
+```php
+
+// Create New Blade Component
+php artisan make:component CustomTheme
+
+// Make it Child by extending LaravelLayout
+class CustomTheme extends LaravelLayout 
+{
+    protected ?string $view = 'custom view path';
+}
+
+```
+Start Using Your New Theme By
+
+```php
+<x-CustomTheme>  
+
+</x-customTheme>
+```
 ## Testing
 
 ```bash
 composer test
 ```
-
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.

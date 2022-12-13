@@ -21,12 +21,14 @@
     @endif
 
 @endif
+    @if($support['alpine']) <style>[x-cloak] { display: none !important;} </style> @endif
 @if($support['spa'])
     <script rel="prefetch" as="script" src="https://cdn.jsdelivr.net/npm/turbolinks@5.2.0/dist/turbolinks.min.js"></script>
 @endif
 @if($support['wire'])
     <livewire:styles />
 @endif
+
     @if(isset($style)){{ $style ?? '' }} @endif
     @if(isset($header)){{ $header ?? '' }} @endif
 

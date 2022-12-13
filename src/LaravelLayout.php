@@ -21,6 +21,20 @@ abstract class LaravelLayout extends Component
     public $favicon_type;
     public $support;
 
+
+    /**
+     * @param string|null $title
+     * @param string|null $name
+     * @param string|null $label
+     * @param array|null $keyword
+     * @param array|null $keywords
+     * @param string|null $description
+     * @param string|null $desc
+     * @param string|null $favicon
+     * @param string|null $logo
+     * @param array|null $support
+     * @param array|null $config
+     */
     public function __construct(
         ?string $title=null,
         ?string $name=null,
@@ -35,8 +49,9 @@ abstract class LaravelLayout extends Component
         ?array $config=[],
     )
     {
-        $hasSupport = $support ?? $config;
+        $this->preConstruct();
 
+        $hasSupport = $support ?? $config;
         $this->resolveSupport($hasSupport);
 
         $hasTitle = !is_null($title) ? $title : $label ?? null;
@@ -51,17 +66,21 @@ abstract class LaravelLayout extends Component
         $hasFavicon = $hasFavicon ?? $this->favicon;
 
         $this->analyzeLayoutConfig($hasTitle,$hasKeyword,$hasDesc,$hasFavicon);
-
-
-
-
+        $this->afterConstruct();
     }
+
+
+    abstract public function preConstruct();
+    abstract public function afterConstruct();
+    abstract public function preRender();
+
 
     /**
      * @return Closure|Htmlable|ViewContract|string
      */
     public function render():View
     {
+        $this->preRender();
         return view($this->view);
     }
 
