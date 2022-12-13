@@ -15,7 +15,7 @@ class BootstrapTheme extends LaravelLayout
      * latest bootstrap version used as default
      * @var string|null
      */
-    public $version;
+    public ?string $version;
     protected const LATEST_VERSION = '5.1';
     protected const AVAILABLE_VERSIONS =  ['5.1','5','5.0','4.6'];
 

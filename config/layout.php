@@ -5,11 +5,11 @@ return [
 
     /*
         |--------------------------------------------------------------------------
-        | Assets Configuration
+        | Layout Configuration
         |--------------------------------------------------------------------------
         |
-        | This value is the name of your application assets. This value is used when the
-        | framework needs to place the application's assets in a notification or
+        | This value is the name of your application layout configuration. This value is used when the
+        | framework needs to place the application's layout,assets,themes in a notification or
         | any other location as required by the application or its packages.
         |
         */

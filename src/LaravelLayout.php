@@ -2,6 +2,7 @@
 
 namespace Mintreu\LaravelLayout;
 
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 use Mintreu\LaravelLayout\Traits\hasLayoutSupport;
@@ -66,17 +67,18 @@ abstract class LaravelLayout extends Component
         $hasFavicon = $hasFavicon ?? $this->favicon;
 
         $this->analyzeLayoutConfig($hasTitle,$hasKeyword,$hasDesc,$hasFavicon);
-        $this->afterConstruct();
+
+        $this->postConstruct();
     }
 
 
-    abstract public function preConstruct();
-    abstract public function afterConstruct();
-    abstract public function preRender();
+     protected function preConstruct(){}
+     protected function postConstruct(){}
+     protected function preRender(){}
 
 
     /**
-     * @return Closure|Htmlable|ViewContract|string
+     * @return View
      */
     public function render():View
     {
