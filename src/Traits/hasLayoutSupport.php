@@ -24,6 +24,7 @@ trait hasLayoutSupport
 
         $this->support['mix'] = [
             'status' => config('layout.support.mix.status',false),
+            'asset_path' => config('layout.support.mix.asset_path',null),
             'hasCss' => config('layout.support.mix.hasCss',false),
             'vendor' => config('layout.support.mix.vendor',false),
             'onlyVendor' => config('layout.support.mix.onlyVendor',false),

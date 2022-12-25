@@ -24,6 +24,7 @@ return [
 
        'mix' => [
            'status' => false,       // enable or disable vite directive
+           'asset_path' => '',
            'hasCss' => false,       // if true load app.css separately or false load via app.js
            'onlyVendor' => false,
            'vendorBuild' => [   // set custom build path 'vendor/package/assets/css|js'

@@ -52,13 +52,13 @@
                 @endforeach
            @else
                 @if($support['mix']['hasCss'])
-                    <link href="{{asset('/css/app.css')}}" rel="stylesheet">
-                    <script src="{{asset('/js/app.js')}}"></script>
+                    <link href="{{asset(($support['mix']['asset_path']) ?$support['mix']['asset_path'].'/css/app.css' :'/css/app.css' )}}" rel="stylesheet">
+                    <script src="{{asset(($support['mix']['asset_path']) ?$support['mix']['asset_path'].'/js/app.js' :'/js/app.js' }}"></script>
                     @foreach($support['mix']['vendorBuild'] as $build)
                         <link href="{{asset($build)}}" rel="stylesheet">
                     @endforeach
                 @else
-                    <script src="{{asset('/js/app.js')}}"></script>
+                    <script src="{{asset(($support['mix']['asset_path']) ?$support['mix']['asset_path'].'/js/app.js' :'/js/app.js' }}"></script>
                     @foreach($support['mix']['vendorBuild']['js'] as $build)
                         <link href="{{asset($build)}}" rel="stylesheet">
                     @endforeach
@@ -66,10 +66,10 @@
            @endif
         @else
             @if($support['mix']['hasCss'])
-                <link href="{{asset('/css/app.css')}}" rel="stylesheet">
-                <script src="{{asset('/js/app.js')}}"></script>
+                <link href="{{asset(($support['mix']['asset_path']) ?$support['mix']['asset_path'].'/css/app.css' :'/css/app.css' )}}" rel="stylesheet">
+                <script src="{{asset(($support['mix']['asset_path']) ?$support['mix']['asset_path'].'/js/app.js' :'/js/app.js' }}"></script>
             @else
-                <script src="{{asset('/js/app.js')}}"></script>
+                <script src="{{asset(($support['mix']['asset_path']) ?$support['mix']['asset_path'].'/js/app.js' :'/js/app.js' }}"></script>
             @endif
         @endif
     @endif
