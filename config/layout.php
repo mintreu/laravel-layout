@@ -5,7 +5,7 @@ return [
 
     /*
         |--------------------------------------------------------------------------
-        | Layout Configuration
+        | Layout Configuration [MINTREU]
         |--------------------------------------------------------------------------
         |
         | This value is the name of your application layout configuration. This value is used when the
@@ -18,7 +18,18 @@ return [
        'vite' => [
            'status' => true,       // enable or disable vite directive
            'hasCss' => false,       // if true load app.css separately or false load via app.js
+           'onlyVendor' => false,
            'vendorBuild' => null   // set custom build path 'vendor/package/build'
+       ],
+
+       'mix' => [
+           'status' => false,       // enable or disable vite directive
+           'hasCss' => false,       // if true load app.css separately or false load via app.js
+           'onlyVendor' => false,
+           'vendorBuild' => [   // set custom build path 'vendor/package/assets/css|js'
+               'css' => [],
+               'js' => [],
+           ]
        ],
 
        'wire' => true,         // livewire status
