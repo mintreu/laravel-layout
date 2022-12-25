@@ -44,6 +44,36 @@
         @endif
     @endif
 
+    @if(!$support['vite']['status'] && $support['mix']['status'])
+        @if($support['mix']['vendor'])
+           @if($support['mix']['onlyVendor'])
+                @foreach($support['mix']['vendorBuild']['css'] as $build)
+                    <link href="{{asset($build)}}" rel="stylesheet">
+                @endforeach
+           @else
+                @if($support['mix']['hasCss'])
+                    <link href="{{asset('/css/app.css')}}" rel="stylesheet">
+                    <script src="{{asset('/js/app.js')}}"></script>
+                    @foreach($support['mix']['vendorBuild'] as $build)
+                        <link href="{{asset($build)}}" rel="stylesheet">
+                    @endforeach
+                @else
+                    <script src="{{asset('/js/app.js')}}"></script>
+                    @foreach($support['mix']['vendorBuild']['js'] as $build)
+                        <link href="{{asset($build)}}" rel="stylesheet">
+                    @endforeach
+                @endif
+           @endif
+        @else
+            @if($support['mix']['hasCss'])
+                <link href="{{asset('/css/app.css')}}" rel="stylesheet">
+                <script src="{{asset('/js/app.js')}}"></script>
+            @else
+                <script src="{{asset('/js/app.js')}}"></script>
+            @endif
+        @endif
+    @endif
+
     @if($support['alpine'])
         <style>[x-cloak] {
                 display: none !important;

@@ -17,10 +17,22 @@ trait hasLayoutSupport
         $this->support['vite']= [
             'status' => config('layout.support.vite.status',true),
             'hasCss' => config('layout.support.vite.hasCss',false),
-            'vendor' => false,
-            'onlyVendor' => false,
-            'vendorBuild' => config('layout.support.vite.vendorBuild',null)
+            'vendor' => config('layout.support.mix.vendor',false),
+            'onlyVendor' => config('layout.support.mix.onlyVendor',false),
+            'vendorBuild' => config('layout.support.vite.vendorBuild',[])
         ];
+
+        $this->support['mix'] = [
+            'status' => config('layout.support.mix.status',false),
+            'hasCss' => config('layout.support.mix.hasCss',false),
+            'vendor' => config('layout.support.mix.vendor',false),
+            'onlyVendor' => config('layout.support.mix.onlyVendor',false),
+            'vendorBuild' => [
+                'css' => config('layout.support.mix.vendorBuild.css',[]),
+                'js' => config('layout.support.mix.vendorBuild.js',[]),
+            ],
+        ];
+
 
         $this->support['wire'] = config('layout.support.wire',true);
         $this->support['spa'] = config('layout.support.spa',true);
