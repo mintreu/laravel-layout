@@ -18,6 +18,7 @@ trait hasLayoutSupport
             'status' => config('layout.support.vite.status',true),
             'hasCss' => config('layout.support.vite.hasCss',false),
             'vendor' => false,
+            'onlyVendor' => false,
             'vendorBuild' => config('layout.support.vite.vendorBuild',null)
         ];
 

@@ -25,11 +25,16 @@
     <!-- Style & Scripts -->
     @if($support['vite']['status'])
         @if($support['vite']['vendor'])
-            @if($support['vite']['hasCss'])
-                @vite(['resources/css/app.css', 'resources/js/app.js'.implode(' ,',$support['vite']['vendorBuild'])])
+            @if($support['vite']['onlyVendor'])
+                @vite(implode(' ,',$support['vite']['vendorBuild']))
             @else
-                @vite('resources/js/app.js'.implode(' ,',$support['vite']['vendorBuild']))
+                @if($support['vite']['hasCss'])
+                    @vite(['resources/css/app.css', 'resources/js/app.js'.implode(' ,',$support['vite']['vendorBuild'])])
+                @else
+                    @vite('resources/js/app.js'.implode(' ,',$support['vite']['vendorBuild']))
+                @endif
             @endif
+
         @else
             @if($support['vite']['hasCss'])
                 @vite(['resources/css/app.css', 'resources/js/app.js'])
