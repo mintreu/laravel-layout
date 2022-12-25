@@ -23,7 +23,7 @@ class LaravelLayoutServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('laravel-layout')
-           ->hasConfigFile('layout')
+            ->hasConfigFile('layout')
             ->hasViews()
             ->hasCommand(LaravelLayoutCommand::class);
     }

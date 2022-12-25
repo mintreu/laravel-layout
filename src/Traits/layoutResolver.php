@@ -8,22 +8,15 @@ trait layoutResolver
 {
 
 
-
-
-
-
-
-
-
-    protected function analyzeLayoutConfig(
-        string $title=null,
-        array $keyword=null,
-        string $description=null,
-        string $favicon=null
-    )
+    /**
+     * @param string|null $title
+     * @param array $keywords
+     * @param string|null $description
+     * @param string|null $favicon
+     * @return void
+     */
+    protected function analyzeLayoutConfig(string $title=null,array $keywords=[],string $description=null,string $favicon=null): void
     {
-
-
         if(!is_null($title))
         {
             $this->title = $title;
@@ -39,14 +32,12 @@ trait layoutResolver
             $this->title = $this->name;
         }
 
-
-
-        if(!is_null($keyword))
+        if(is_array($keywords) && !empty($keywords))
         {
-            $this->keyword = implode(',',$keyword);
+            $this->keyword = implode(',',$keywords);
         }
 
-        if(!empty($this->keyword) && is_array($this->keyword))
+        if(!empty($this->keyword))
         {
             $this->keyword = implode(',',$this->keyword);
         }
@@ -62,15 +53,6 @@ trait layoutResolver
             $this->favicon_type = Str::afterlast(Str::afterLast($favicon,'/'),'.');
             $this->favicon_type = ($this->favicon_type == 'ico') ? 'x-icon' : $this->favicon_type;
         }
-
-
-
-
     }
-
-
-
-
-
 
 }

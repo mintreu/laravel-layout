@@ -13,14 +13,34 @@ abstract class LaravelLayout extends Component
 
     use layoutResolver,hasLayoutSupport;
 
+    /**
+     * @var string|null
+     */
     protected ?string $view;
-
-    public $title;
-    public $keyword;
-    public $description;
-    public $favicon;
-    public $favicon_type;
-    public $support;
+    /**
+     * @var string|null
+     */
+    public ?string $title;
+    /**
+     * @var string|null
+     */
+    public ?string $keyword;
+    /**
+     * @var string|null
+     */
+    public ?string $description;
+    /**
+     * @var string|null
+     */
+    public ?string $favicon;
+    /**
+     * @var string|null
+     */
+    public ?string $favicon_type;
+    /**
+     * @var array|null
+     */
+    public ?array $support;
 
 
     /**
@@ -50,24 +70,24 @@ abstract class LaravelLayout extends Component
         ?array $config=[],
     )
     {
+        // Callable Child Method
         $this->preConstruct();
-
+        //Analyze Layout Support
         $hasSupport = $support ?? $config;
         $this->resolveSupport($hasSupport);
-
+        // Analyze Layout Vars
         $hasTitle = !is_null($title) ? $title : $label ?? null;
         $hasTitle = !is_null($name) ? $name : $hasTitle;
         $hasTitle = $hasTitle ?? $this->title;
-
         $hasKeyword = !is_null($keyword) ? $keyword : $keywords ?? null;
-        $hasKeyword = $hasKeyword ?? $this->keyword;
+        $hasKeyword = $hasKeyword ?? [];
         $hasDesc = !is_null($description) ? $description : $desc ?? null;
         $hasDesc = $hasDesc ?? $this->description;
         $hasFavicon = !is_null($favicon) ? $favicon : $logo ?? null;
         $hasFavicon = $hasFavicon ?? $this->favicon;
-
+        // Layout Vars to Layout Config
         $this->analyzeLayoutConfig($hasTitle,$hasKeyword,$hasDesc,$hasFavicon);
-
+        // Callable Child Method
         $this->postConstruct();
     }
 
@@ -82,6 +102,7 @@ abstract class LaravelLayout extends Component
      */
     public function render():View
     {
+        // Callable Child Method
         $this->preRender();
         return view($this->view);
     }
