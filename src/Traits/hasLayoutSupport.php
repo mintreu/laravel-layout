@@ -2,6 +2,7 @@
 
 namespace Mintreu\LaravelLayout\Traits;
 
+use Mintreu\LaravelLayout\View\Themes\BootstrapTheme;
 use Mintreu\LaravelLayout\View\Themes\TallTheme;
 
 trait hasLayoutSupport
@@ -34,6 +35,8 @@ trait hasLayoutSupport
             ],
         ];
 
+        $this->support['bootstrap']['version'] = BootstrapTheme::LATEST_VERSION;
+
 
         $this->support['wire'] = config('layout.support.wire',true);
         $this->support['spa'] = config('layout.support.spa',true);
@@ -55,7 +58,17 @@ trait hasLayoutSupport
             // Set Base Config
             if(in_array($key,$this->getAvailableSupportKeys()))
             {
-                $this->{$key} = $value;
+                if($key == 'version' && $this instanceof BootstrapTheme)
+                {
+                    if(in_array($value,BootstrapTheme::AVAILABLE_VERSIONS))
+                    {
+                        $this->{$key} = $value;
+                    }
+                }else{
+                    $this->{$key} = $value;
+                }
+
+
             }
 
         }
@@ -67,7 +80,7 @@ trait hasLayoutSupport
 
     protected function getAvailableSupportKeys(): array
     {
-        return ['title','name','label', 'keywords','keyword', 'description','desc', 'favicon','logo'];
+        return ['title','name','label', 'keywords','keyword', 'description','desc', 'favicon','logo','version'];
     }
 
 
