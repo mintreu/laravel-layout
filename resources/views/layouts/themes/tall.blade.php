@@ -1,5 +1,5 @@
 <x-layout::layout :title="$title" :keyword="$keyword" :desc="$description" :favicon="$favicon" :support="$support">
-    <x-slot name="htmlClass"> class="antialiased"</x-slot>
+    <x-slot name="bodyClass"> class="antialiased"</x-slot>
     <x-slot name="meta">{{ $meta ?? '' }}</x-slot>
     <x-slot name="style">
         {{ $style ?? '' }}

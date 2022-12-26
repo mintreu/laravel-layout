@@ -20,27 +20,27 @@ abstract class LaravelLayout extends Component
     /**
      * @var string|null
      */
-    public ?string $title;
+    public ?string $title = null;
     /**
      * @var string|null
      */
-    public ?string $keyword;
+    public ?string $keyword = null;
     /**
      * @var string|null
      */
-    public ?string $description;
+    public ?string $description = null;
     /**
      * @var string|null
      */
-    public ?string $favicon;
+    public ?string $favicon = null;
     /**
      * @var string|null
      */
-    public ?string $favicon_type;
+    public ?string $favicon_type = null;
     /**
      * @var array|null
      */
-    public ?array $support;
+    public ?array $support = [];
 
 
     /**
