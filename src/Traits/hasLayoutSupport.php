@@ -48,10 +48,16 @@ trait hasLayoutSupport
             $this->support['alpine'] = config('layout.support.alpine',false);
         }
 
-        
+
 
         $this->support['htmlClass'] = null;
         $this->support['bodyClass'] = null;
+
+
+        if($this instanceof  BootstrapTheme)
+        {
+            $this->support['version'] = BootstrapTheme::LATEST_VERSION;
+        }
 
 
         // Overwrite Support Configs
