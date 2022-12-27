@@ -35,7 +35,7 @@ trait hasLayoutSupport
             ],
         ];
 
-        $this->support['bootstrap']['version'] = BootstrapTheme::LATEST_VERSION;
+
 
 
         $this->support['wire'] = config('layout.support.wire',true);

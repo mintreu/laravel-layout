@@ -75,7 +75,20 @@ abstract class LaravelLayout extends Component
         //Analyze Layout Support
         $hasSupport = $support ?? $config;
         $this->resolveSupport($hasSupport);
-        // Analyze Layout Vars
+        // Analyze Layout Params
+        $this->analyzeParameters($title,$name,$label,$keyword,$keywords,$description,$desc,$favicon,$logo);
+
+        // Callable Child Method
+        $this->postConstruct();
+    }
+
+
+     protected function preConstruct(){}
+     protected function postConstruct(){}
+
+
+    private function analyzeParameters($title=null,$name=null,$label=null,$keyword=null,$keywords=null,$description=null,$desc=null,$favicon=null,$logo=null)
+    {
         $hasTitle = !is_null($title) ? $title : $label ?? null;
         $hasTitle = !is_null($name) ? $name : $hasTitle;
         $hasTitle = $hasTitle ?? $this->title;
@@ -87,14 +100,7 @@ abstract class LaravelLayout extends Component
         $hasFavicon = $hasFavicon ?? $this->favicon;
         // Layout Vars to Layout Config
         $this->analyzeLayoutConfig($hasTitle,$hasKeyword,$hasDesc,$hasFavicon);
-        // Callable Child Method
-        $this->postConstruct();
     }
-
-
-     protected function preConstruct(){}
-     protected function postConstruct(){}
-     protected function preRender(){}
 
 
     /**
@@ -102,8 +108,6 @@ abstract class LaravelLayout extends Component
      */
     public function render():View
     {
-        // Callable Child Method
-        $this->preRender();
         return view($this->view);
     }
 
