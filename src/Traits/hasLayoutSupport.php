@@ -48,6 +48,8 @@ trait hasLayoutSupport
             $this->support['alpine'] = config('layout.support.alpine',false);
         }
 
+        
+
         $this->support['htmlClass'] = null;
         $this->support['bodyClass'] = null;
 

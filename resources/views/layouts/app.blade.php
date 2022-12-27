@@ -45,6 +45,7 @@
     @endif
 
     @if(!$support['vite']['status'] && $support['mix']['status'])
+
         @if($support['mix']['vendor'])
            @if($support['mix']['onlyVendor'])
                 @foreach($support['mix']['vendorBuild']['css'] as $build)
@@ -52,13 +53,13 @@
                 @endforeach
            @else
                 @if($support['mix']['hasCss'])
-                    <link href="{{asset(($support['mix']['asset_path']) ?$support['mix']['asset_path'].'/css/app.css' :'/css/app.css' )}}" rel="stylesheet">
-                    <script src="{{asset(($support['mix']['asset_path']) ?$support['mix']['asset_path'].'/js/app.js' :'/js/app.js' }}"></script>
+                    <link href="{{ ($support['mix']['asset_path'] ? asset($support['mix']['asset_path'].'/css/app.css') : asset('/css/app.css') ) }}" rel="stylesheet">
+                    <script src="{{$support['mix']['asset_path'] ? asset($support['mix']['asset_path'].'/js/app.js') : asset('/js/app.js') }}"></script>
                     @foreach($support['mix']['vendorBuild'] as $build)
                         <link href="{{asset($build)}}" rel="stylesheet">
                     @endforeach
                 @else
-                    <script src="{{asset(($support['mix']['asset_path']) ?$support['mix']['asset_path'].'/js/app.js' :'/js/app.js' }}"></script>
+                    <script src="{{ $support['mix']['asset_path'] ? asset($support['mix']['asset_path'].'/js/app.js') : asset('/js/app.js') }}"></script>
                     @foreach($support['mix']['vendorBuild']['js'] as $build)
                         <link href="{{asset($build)}}" rel="stylesheet">
                     @endforeach
@@ -66,10 +67,10 @@
            @endif
         @else
             @if($support['mix']['hasCss'])
-                <link href="{{asset(($support['mix']['asset_path']) ?$support['mix']['asset_path'].'/css/app.css' :'/css/app.css' )}}" rel="stylesheet">
-                <script src="{{asset(($support['mix']['asset_path']) ?$support['mix']['asset_path'].'/js/app.js' :'/js/app.js' }}"></script>
+                <link href="{{ ($support['mix']['asset_path'] ? asset($support['mix']['asset_path'].'/css/app.css') : asset('/css/app.css') ) }}" rel="stylesheet">
+                <script src="{{ $support['mix']['asset_path'] ? asset($support['mix']['asset_path'].'/js/app.js') : asset('/js/app.js') }}"></script>
             @else
-                <script src="{{asset(($support['mix']['asset_path']) ?$support['mix']['asset_path'].'/js/app.js' :'/js/app.js' }}"></script>
+                <script src="{{ $support['mix']['asset_path'] ? asset($support['mix']['asset_path'].'/js/app.js') : asset('/js/app.js') }}"></script>
             @endif
         @endif
     @endif
