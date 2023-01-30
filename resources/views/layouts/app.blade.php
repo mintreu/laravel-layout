@@ -18,7 +18,7 @@
         {{ $meta ?? '' }}
     @endif
     <title> @if($title)
-            {{config('app.name')}}|{{$title}}
+            {{$title}}
         @else
             {{config('app.name')}}
         @endif</title>
